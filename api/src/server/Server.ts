@@ -1,7 +1,11 @@
 import http from 'http'
 
 import express from 'express'
-import { useExpressServer } from 'routing-controllers'
+import {
+  useContainer as routingUseContainer,
+  useExpressServer,
+} from 'routing-controllers'
+import { Container } from 'typedi'
 
 import { getenv } from '../../lib/getenv'
 import pkg from '../../package.json'
@@ -40,6 +44,7 @@ class Server {
       this.app.use(requestLogger())
     }
 
+    routingUseContainer(Container)
     useExpressServer(this.app, {
       cors: process.env.NODE_ENV === 'development',
       controllers,

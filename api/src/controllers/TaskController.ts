@@ -10,6 +10,7 @@ import {
 import uuidv4 from 'uuid/v4'
 
 import multer from 'multer'
+import TaskQueueService from '../services/TaskQueueService'
 
 export interface Task {
   id: string // TODO: make type-safe, share types with frontend
@@ -48,6 +49,13 @@ export interface RequestWithFiles {
 export default class TaskController {
   // HACK: should become a service, with client isolation
   private files: Map<string, File> = new Map<string, File>()
+
+  private taskQueueService: TaskQueueService
+
+  // TODO: inject services
+  constructor(taskQueueService: TaskQueueService) {
+    this.taskQueueService = taskQueueService
+  }
 
   @Get('/api/v1/taskId')
   public async getTaskId(): Promise<GetTaskIdResponse> {
@@ -93,6 +101,7 @@ export default class TaskController {
     @Body({ required: true })
     { payload: { task } }: PostTaskRequest,
   ): Promise<PostTaskResponse> {
+    this.taskQueueService.send()
     return { payload: { taskId: task.id } }
   }
 

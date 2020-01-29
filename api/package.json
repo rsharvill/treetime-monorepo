@@ -35,6 +35,7 @@
     "packages:upgrade:newest": "ncu --upgrade --newest"
   },
   "dependencies": {
+    "amqplib": "0.5.5",
     "axios": "0.19.1",
     "body-parser": "1.19.0",
     "class-transformer": "0.2.3",
@@ -52,6 +53,7 @@
     "routing-controllers": "0.8.0",
     "runtypes": "4.0.3",
     "set-cookie-parser": "2.4.1",
+    "typedi": "0.8.0",
     "uuid": "3.4.0",
     "winston": "3.2.1"
   },
@@ -66,6 +68,7 @@
     "@babel/preset-typescript": "7.8.3",
     "@nuxt/friendly-errors-webpack-plugin": "2.5.0",
     "@schemastore/package": "0.0.5",
+    "@types/amqplib": "0.5.13",
     "@types/babel__code-frame": "7.0.1",
     "@types/body-parser": "1.17.1",
     "@types/express": "4.17.2",
